@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "394216133731",
+    "project_id": "restaurant-app-practice-ead3d",
+    "storage_bucket": "restaurant-app-practice-ead3d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394216133731:android:829b0e8a78c3b961ce5456",
+        "android_client_info": {
+          "package_name": "com.example.resta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "394216133731-dest399ogseg4sia8qmpml05gdqnvj3p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfFGbe0fvNQBgaDeJOuqgGiqrcisIYJrg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "394216133731-dest399ogseg4sia8qmpml05gdqnvj3p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

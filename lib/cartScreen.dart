@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:resta/cart_controller.dart';
 import 'package:resta/cart_screen.dart';
 import 'package:resta/product.dart';
+import 'package:resta/productcontroler.dart';
 
 class CatalogScreen extends StatelessWidget {
   const CatalogScreen({Key? key}) : super(key: key);
@@ -13,9 +14,9 @@ class CatalogScreen extends StatelessWidget {
       appBar: AppBar(title: Text("catalog")),
       body: SafeArea(
         child: Column(children: [
-          const CatalogProducts(),
+          CatalogProducts(),
           ElevatedButton(
-            onPressed: () => Get.to(() =>const CartScreen()),
+            onPressed: () => Get.to(() => const CartScreen()),
             child: const Text('go to cart'),
           )
         ]),
@@ -24,48 +25,52 @@ class CatalogScreen extends StatelessWidget {
   }
 }
 
-
-
-
 class CatalogProducts extends StatelessWidget {
-  const CatalogProducts({Key? key}) : super(key: key);
+  final productController = Get.put(ProductController);
+  CatalogProducts({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: ListView.builder(itemBuilder: (BuildContext context, int index) {
-        return CatalogProductCard(index: index,);
-      }),
-    );
+    return Obx(() => Flexible(
+          child:
+              ListView.builder(itemBuilder: (BuildContext context, int index) {
+            return CatalogProductCard(
+              index: index,
+            );
+          }),
+        ));
   }
 }
 
 class CatalogProductCard extends StatelessWidget {
   final cartController = Get.put(CartController());
+  final ProductController productController = Get.find();
   final int index;
   CatalogProductCard({Key? key, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 30,),
+      padding: EdgeInsets.symmetric(
+        horizontal: 30,
+      ),
       child: Row(children: [
-        Expanded(child:
-        CircleAvatar(
-          radius: 30,
-          backgroundImage: NetworkImage(
-            Product.products[index].imageUrl,
+        Expanded(
+          child: CircleAvatar(
+            radius: 30,
+            backgroundImage: NetworkImage(
+              productController.products[index].imageUrl,
+            ),
           ),
-        ),
         ),
         const SizedBox(
           width: 20,
         ),
-        Expanded(child: Text(Product.products[index].name)),
-        Expanded(child: Text('${Product.products[index].price}')),
+        Expanded(child: Text(productController.products[index].name)),
+        Expanded(child: Text('${productController.products[index].price}')),
         IconButton(
           onPressed: () {
-            cartController.addProduct(Product.products[index]);
+            cartController.addProduct(productController.products[index]);
           },
           icon: Icon(Icons.add_circle),
         ),
